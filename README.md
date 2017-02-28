@@ -139,7 +139,7 @@ Run site in local development mode:
 npm run dev
 ```
 
-If everything is ok then http://localhost:3000 display demo site
+If everything is ok then http://localhost:3000 should be succesfully opened in browser.
 
 
 Screnshots
