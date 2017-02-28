@@ -141,11 +141,11 @@ If something isn't working check `src/settings.js` or error messages.
 
 Screnshots
 ---------------------
-![screenshots](https://github.com/AlexYegupov/users-demo/blob/stackover/ss.png?raw=true)
+![screenshots](https://github.com/AlexYegupov/QuestionAnswerDemo/blob/master/ss.png?raw=true)
 
 Database:
 
-![screenshots](https://github.com/AlexYegupov/users-demo/blob/stackover/ss_db.png?raw=true)
+![database screenshots](https://github.com/AlexYegupov/QuestionAnswerDemo/blob/master/ss_db.png?raw=true)
 
 
 
