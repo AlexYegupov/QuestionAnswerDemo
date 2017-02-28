@@ -1,10 +1,35 @@
 About
 ==============
-Demo questions editor
+Demo questions and answers editor web application.
+
+Implemented via React/Redux + node + postgres.
+
 
 Requirements
 =================
-In short: implement nodejs+rdbms+react question/answers interactive edit demo application
+
+Implement a small demo Q&A web-application in a style of stackoverflow.com
+
+Basic functionality:
+- Authentication and authorisation are NOT required. User identification is perfomed by username
+- User should have ability to see a list of:
+   - all questions
+   - unanswered questions
+   - answered questions
+- User should have ability to see on the separated page a question and all it's answers
+- user should be available to ask a question
+- user should have ability to answer on any question
+
+It's recommended to use frameworks like React.js, Node.js, sails.js, Sequilize.
+The one of RDBMS is mandatory to be used.
+
+The amount of any question's answers is not limited.
+
+The implementation details not specified here should be implemented on the developer discretion.
+
+
+
+### Original requirements (in russian) ###
 
 Тестовое завдання №2
 
@@ -35,20 +60,16 @@ Init database (tested on postgres 9.3.16)
 ------------------------------------------
 
 
-0. Preparations:
+* Create `stackover` postgress database
 
-  0.1 Create postgres user with same name as current OS user
-  0.2 Set postgres user password to 'secret' value
+* Create `<OS_USER>` database user with all priveleges on database and `secret` password
 
 
-1. Create database and metadata
+Note: to use different values modify env variables or src/settings.js.
 
-(in psql):
+* Create database objects
 
-```
-create database stackover;
-\c stackover
-
+```sql
 create table users(
     id serial primary key,
     name varchar(300)
@@ -62,18 +83,15 @@ insert into users(id, name) values ('paul');
 insert into users(id, name) values ('ringo');
 insert into users(id, name) values ('george');
 
-
 create table question(
     id serial primary key,
     text varchar(1000),
     userId integer references users
 );
 
-
 alter table question alter column text set not null;
 alter table question alter column userId set not null;
 alter table question add unique (text);
-
 
 insert into question (1, text, userId) values (id, 'what they do in a bed?', 1);
 <insert into question (2, text, userId) values (id, 'why dont we do it in a road?', 2);
@@ -92,48 +110,40 @@ alter table answer alter column text set not null;
 insert into answer (id, questionId, text, userId) values (1, 1, 'q1 a1', 3);
 insert into answer (id, questionId, text, userId) values (2, 1, 'q2 a2', 4);
 
-# select * from question left join answer on question.id = answer.questionId ;
-# id |             text              | userid | id | questionid | text  | userid
-#----+-------------------------------+--------+----+------------+-------+--------
-#  1 | what they do in a bed?        |      1 |  2 |          1 | q2 a2 |      4
-#  1 | what they do in a bed?        |      1 |  1 |          1 | q1 a1 |      3
-#  2 | why dont we do it in a road? |      2 |    |            |       |
-# (3 rows)
-
-
-
 ```
 
 
-2. Setup fresh nodejs (tested on v7.0.0)
+2. Activate fresh version nodejs (tested on v7.0.0)
 ----------------------------------------
-(I used nvm for that)
+(The nvm optionally could be used for that)
 
-
-3. Install and run
-----------------------------------
-
-
-```
- git clone https://github.com/AlexYegupov/users-demo
- cd users-demo
- git checkout origin/stackover
-
- npm i
-
- # Note: check manually that src/settings.js are correct (modify it or set env variables)
-
- npm run dev
-
-
+```bash
+source ~/.nvm/nvm.sh
+nvm use v7
 ```
 
-open http://localhost:3000 in browser
 
+3. Install and run development version
+-----------------------------------------
+
+
+```bash
+git clone https://github.com/AlexYegupov/QuestionAnswerDemo
+cd QuestionAnswerDemo
+npm i
+npm run dev
+
+```
+
+If everything is ok then http://localhost:3000 should work.
+
+If something isn't working check `src/settings.js` or error messages.
 
 Screnshots
 ---------------------
 ![screenshots](https://github.com/AlexYegupov/users-demo/blob/stackover/ss.png?raw=true)
+
+Database:
 
 ![screenshots](https://github.com/AlexYegupov/users-demo/blob/stackover/ss_db.png?raw=true)
 
