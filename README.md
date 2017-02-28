@@ -63,7 +63,7 @@ Installation (tested on ubuntu 14.04)
 * Create `<OS_USER>` database user with all priveleges on database and `secret` password
 
 
-Note: to use different values set env variables in `src/settings.js`
+Note: use env variables to customize values (see `src/settings.js`)
 
 * Create database objects
 
