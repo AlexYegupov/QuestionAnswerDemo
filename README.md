@@ -11,7 +11,7 @@ Requirements
 Implement a small demo Q&A web-application in a style of stackoverflow.com
 
 Basic functionality:
-- Authentication and authorisation are NOT required. User identification is perfomed by username
+- Authentication and authorisation are not required. User identification is perfomed by username
 - User should have ability to see a list of:
    - all questions
    - unanswered questions
@@ -52,12 +52,10 @@ The implementation details not specified here should be implemented on the devel
 
 
 
-Quick instructions (tested on ubuntu 14.04)
-==============================================
+Installation (tested on ubuntu 14.04)
+--------------------------------------------
 
-
-Init database (tested on postgres 9.3.16)
-------------------------------------------
+### 1. Init database (tested on postgres 9.3.16) ###
 
 
 * Create `stackover` postgress database
@@ -113,8 +111,8 @@ insert into answer (id, questionId, text, userId) values (2, 1, 'q2 a2', 4);
 ```
 
 
-2. Activate fresh version nodejs (tested on v7.0.0)
-----------------------------------------
+### 2. Activate fresh nodejs version (tested on v7.0.0) ###
+
 (The nvm optionally could be used for that)
 
 ```bash
@@ -123,15 +121,14 @@ nvm use v7
 ```
 
 
-3. Install and run development version
------------------------------------------
+### 3. Install and run development version ###
 
 
 ```bash
 git clone https://github.com/AlexYegupov/QuestionAnswerDemo
 cd QuestionAnswerDemo
 npm i
-npm run devc
+npm run dev
 
 ```
 
