@@ -139,7 +139,7 @@ Run site in local development mode:
 npm run dev
 ```
 
-If everything is ok then http://localhost:3000 should work.
+If everything is ok then http://localhost:3000 display demo site
 
 
 Screnshots
