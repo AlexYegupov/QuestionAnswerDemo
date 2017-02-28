@@ -128,13 +128,19 @@ nvm use v7
 git clone https://github.com/AlexYegupov/QuestionAnswerDemo
 cd QuestionAnswerDemo
 npm i
-npm run dev
 
+```
+
+Check `src/settings.js` contains correct values. Otherwise you can customize them by env variables.
+
+Run site in local development mode:
+
+```bash
+npm run dev
 ```
 
 If everything is ok then http://localhost:3000 should work.
 
-If something isn't working check `src/settings.js` or error messages.
 
 Screnshots
 ---------------------
