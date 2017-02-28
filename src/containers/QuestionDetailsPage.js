@@ -1,16 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-//import { /* testLogin, testLogout*//* , loadStarred*/} from '../actions'
-//import { test } from '../actions/authActions'
-//import { login, logout } from '../actions/authActions'
-//import { loadQuestion } from '../actions/questionActions'
 import { loadQuestionAndAnswers, createAnswer } from '../actions/answerActions'
-//import { refreshLoggedUser } from '../actions/authActions'
-
-// import User from '../components/User'
-// import LoggedUser from '../components/LoggedUser'
-// // import List from '../components/List'
-// // import zip from 'lodash/zip'
 import { Link } from 'react-router'
 import './QuestionDetailsPage.css'
 import { formatUnknownError } from '../utils/errorUtil'
@@ -18,16 +8,6 @@ import { formatUnknownError } from '../utils/errorUtil'
 
 class QuestionDetails extends Component {
   static propTypes = {
-  //   users: PropTypes.array.isRequired,
-  //   usersError: PropTypes.object,
-  //   loggedUser: PropTypes.object,
-  //   //test: PropTypes.func.isRequired,
-  //   loadUsers: PropTypes.func.isRequired,
-  // 
-  //   login: PropTypes.func,
-  //   logout: PropTypes.func,
-  //   deleteUser: PropTypes.func,
-  //   refreshLoggedUser: PropTypes.func
     question: PropTypes.object,
     answers: PropTypes.array,
     answerError: PropTypes.object,
@@ -185,10 +165,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   // {
-  //   loadUsers,
-  //   login,
-  //   logout,
-  //   deleteUser,
   //   refreshLoggedUser
   // }
 

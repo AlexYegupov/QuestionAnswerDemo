@@ -97,95 +97,12 @@ app.use(cors({credentials: true, origin: true}))
 //   //req.session.message = 'Hello World ' + new Date()
 //   res.json(user).end()
 // })
-// 
-// // get current session user (to re-get already logged user credentials)
-// app.get('/api/session', checkAuth(function(req, res, next) {
-// 
-//   res.json(req.session.user)
-//   res.end()
-// }))
-// 
-// 
-// // ==logout
-// app.delete('/api/session', function(req, res) {
-// 
-//   // nw for cookie-based
-//   // req.session.destroy(function (err) {
-//   //   if (err) console.log('Error:', err)
-//   //   res.json({loggedOut: true}).end()
-//   // })
-// 
-//   //nw for cookie-based
-//   //delete req.session
-// 
-//   req.session.user = null
-//   res.json(req.session.user).end()
-// })
-// 
-// 
-// app.get('/api/test', function(req, res, next) {
-//   //console.log('T GET: RS, RSU', req.session, req.session.user)
-//   res.json({loggedUser: req.session.user})
-//   //res.send('Hello3')
-//   //throw new Error("my error");
-// 
-//   //console.log('logged as:', req.session.user)
-//   //next()
-//   res.end()
-// })
+/
 
 
-// app.get('/api/secure', checkAuth(function(req, res, next) {
-//   res.send('SECURE DATA').end()
-// }))
 
-// app.get('/api/users', function(req, res) {
-//   //console.log('/api/users', req.session, req.session.user)
-//   //res.json(Users.allDataSafe()).end()
-//   //return res.status(401).send('TEST error')  //text/html
-//   //return res.status(401).json({a: 1}).end() // application/json
-//   res.json(Users.all()).end()
-// })
+// Note: left sql/ddl hardcoded & processing db errors maximally simply because in real project those optimizations could depend on a lot of requirements
 
-
-// Note: left sql/ddl hardcoded & processing db errors partially copypasted intentionally because in real projects those optimizations could depend on different project requirements
-
-app.get('/api/users', function(req, res) {
-  db.any(`select id, name from users`)
-    .then( data => {
-      res.json(data).end()
-    })
-    .catch( error => {
-      // NOTE: for simplicity don't distinguish 4xx, 5xx etc
-      res.status(400).json(error).end()
-    })
-})
-
-app.get('/api/users/:id', function(req, res) {
-  db.oneOrNone(`select id, name
-                  from users
-                 where id = $1`, [req.params.id])
-    .then( data => {
-      res.json(data).end()
-    })
-    .catch( error => {
-      res.status(400).json(error).end()
-    })
-})
-
-
-// use POST only for CREATING new users
-app.post('/api/users', function(req, res) {
-  let data = req.body
-
-  db.one(`insert into users(name) values($<name>) returning id, name`, data)
-    .then( data => {
-      res.json(data).end()
-    })
-    .catch( error => {
-      res.status(400).json(error).end()
-    })
-})
 
 
 // TODO: change camelCase to underlined_case everywhere because postgres minimizes it
@@ -319,61 +236,6 @@ app.post('/api/questions/:questionId/answers', function(req, res) {
   )
 })
 
-// // NOTE: experimentally use :slug as :id
-// app.get('/api/users/:slug', function(req, res) {
-//   let user = Users.findUser(req.params.slug)
-//   if (!user) return res.status(204).end() //send('User not found').
-// 
-//   res.json(user).end()
-// })
-
-
-// app.patch('/api/users/:slug', checkAuth(function(req, res) {
-//   // let user = Users.findUser(req.params.slug)
-//   // if (!user) return res.status(404).end()
-//   let slug = req.params.slug //req.body.slug
-// 
-//   try {
-//     var user = Users.patchUser(slug, req.body)
-//   } catch (e) {
-//     return res.status(406).json({'error': e, 'message': e.message}).end()
-//   }
-// 
-//   if (user) {
-//     Users.saveAll()
-//     return res.json(user).end()
-//   } else {
-//     return res.status(404).end()
-//   }
-// 
-// }))
-// 
-// 
-// // use POST only for CREATING new users
-// app.post('/api/users', checkAuth(function(req, res) {
-//   let data = req.body
-//   //console.log('POST /api/users', req.session, req.session.user)
-// 
-//   try {
-//     var user = Users.createUser(data)
-//   } catch (e) {
-//     return res.status(406).json({'error': e, 'message': e.message}).end()
-//   }
-// 
-//   Users.saveAll()
-//   res.status(201).json(user).end()
-// }))
-// 
-// 
-// app.delete('/api/users/:slug', checkAuth(function(req, res) {
-//   if (Users.deleteUser(req.params.slug)) {
-//     Users.saveAll()
-//     return res.status(200).json({deletedUserSlug: req.params.slug}).end() // 204
-//   } else {
-//     return res.status(404).end()
-//   }
-// }))
-
 
 app.get('', function handleRender(req, res) {
   res.send('it works').end()
@@ -381,52 +243,6 @@ app.get('', function handleRender(req, res) {
 
 
 
-// app.get('', function handleRender(req, res) {
-//   console.log('RENDERING')
-//   // Query our mock API asynchronously
-//   fetchCounter(apiResult => {
-//     // Read the counter from the request, if provided
-//     const params = qs.parse(req.query)
-//     const counter = parseInt(params.counter, 10) || apiResult || 0
-// 
-//     // Compile an initial state
-//     const preloadedState = { counter }
-// 
-//     // Create a new Redux store instance
-//     const store = configureStore(preloadedState)
-// 
-//     // Render the component to a string
-//     const html = renderToString(
-//       <Provider store={store}>
-//         <App />
-//       </Provider>
-//     )
-// 
-//     // Grab the initial state from our Redux store
-//     const finalState = store.getState()
-// 
-//     // Send the rendered page back to the client
-//     res.send(renderFullPage(html, finalState))
-//   })
-// })
-//
-// function renderFullPage(html, preloadedState) {
-//   return `
-//     <!doctype html>
-//     <html>
-//       <head>
-//         <title>Users test</title>
-//       </head>
-//       <body>
-//         <div id="app">${html}</div>
-//         <script>
-//           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\x3c')}
-//         </script>
-//         <script src="/static/bundle.js"></script>
-//       </body>
-//     </html>
-//     `
-// }
 
 app.listen(settings.apiPort, (error) => {
   if (error) {

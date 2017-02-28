@@ -1,10 +1,8 @@
 import React from 'react'
-import { Route, Redirect, IndexRedirect } from 'react-router'
+import { Route,
+         //Redirect,
+         IndexRedirect } from 'react-router'
 //import App from './containers/App'
-import UserList from './containers/UserList'
-import LoginPage from './containers/LoginPage'
-import TestPage from './containers/TestPage'
-import UserDetailsPage from './containers/UserDetailsPage'
 import NotFoundPage from './containers/NotFoundPage'
 
 import QuestionList from './containers/QuestionListPage'
@@ -45,22 +43,12 @@ import QuestionDetails from './containers/QuestionDetailsPage'
 export const createRoutes = (store) => (
   <Route path="/" >
     <IndexRedirect to="/questions" />
-    <Route path="/test" component={TestPage} />
 
     <Route path="/questions" component={QuestionList} />
     <Route path="/questions/:id" component={QuestionDetails} />
 
-    {/*<Route path="/questions-create" component={QuestionsCreatePage} /> */}
-
-
-    <Route path="/users" component={UserList} />
-    <Route path="/users-create" component={UserDetailsPage} /*onEnter={requireAuth.bind(this, store)} don't use
-        TODO: implement "refresh_logged_user && redirect if unlogged behavour"
-       */
-      />
-    <Route path="/users/:slug" component={UserDetailsPage} />
-    <Route path="/login" component={LoginPage} />  {/* onLeave={onLoginLeave} */}
-    <Redirect from="/loginSuccess" to="/users" />
+    {/*<Route path="/login" component={LoginPage} />
+     <Redirect from="/loginSuccess" to="/users" /> */}
     <Route path="/404" component={NotFoundPage} />
     <Route path="*" component={NotFoundPage} />
   </Route>

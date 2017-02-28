@@ -4,6 +4,18 @@ Demo questions and answers editor web application.
 
 Implemented via React/Redux + node + postgres.
 
+This project was built with Create React App.
+
+
+Features
+-----------
+
+* REST-api server on nodejs + express
+* routing by react-router
+* es6, babel
+* react + redux
+* dev & prod versions
+
 
 Requirements
 =================
@@ -121,7 +133,7 @@ nvm use v7
 ```
 
 
-### 3. Install and run development version ###
+### 3. Install ###
 
 
 ```bash
@@ -133,13 +145,31 @@ npm i
 
 Check `src/settings.js` contains correct values. Otherwise you can customize them by env variables.
 
-Run site in local development mode:
+
+### 4. Run development version
+
 
 ```bash
 npm run dev
 ```
 
 If everything is ok then http://localhost:3000 should be succesfully opened in browser.
+
+
+### 5. (optionally) Build and run production version
+
+Build production version (to `build` directory) and run REST-api node server:
+```bash
+npm run build
+npm run server
+```
+
+in parallel terminal execute web server. For example:
+```bash
+(cd build && python -m SimpleHTTPServer 9000)
+```
+
+If everything is ok then http://localhost:9000 should be succesfully opened in browser.
 
 
 Screnshots
@@ -155,16 +185,8 @@ Database:
 TODO
 ---------------
 
-remove extra code
-
-remove extra comments from code
-
 clear new questions and answer after successful creating
 
-keep "logged user" through all forms (store in redux storage)
-
-make "prod" mode works
-
-move project from branch into separate one
+keep "user" value through all forms (store in redux storage)
 
 

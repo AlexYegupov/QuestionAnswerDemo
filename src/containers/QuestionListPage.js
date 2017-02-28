@@ -1,15 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-//import { /* testLogin, testLogout*//* , loadStarred*/} from '../actions'
-//import { test } from '../actions/authActions'
-//import { login, logout } from '../actions/authActions'
 import { loadQuestions, createQuestion } from '../actions/questionActions'
-//import { refreshLoggedUser } from '../actions/authActions'
 
-// import User from '../components/User'
-// import LoggedUser from '../components/LoggedUser'
-// // import List from '../components/List'
-// // import zip from 'lodash/zip'
 import { Link } from 'react-router'
 import './QuestionList.css'
 import { formatUnknownError } from '../utils/errorUtil'
@@ -19,16 +11,6 @@ const DISPLAY_QUESTIONS = ['all', 'unanswered', 'answered']
 
 class QuestionList extends Component {
   static propTypes = {
-  //   users: PropTypes.array.isRequired,
-  //   usersError: PropTypes.object,
-  //   loggedUser: PropTypes.object,
-  //   //test: PropTypes.func.isRequired,
-  //   loadUsers: PropTypes.func.isRequired,
-  // 
-  //   login: PropTypes.func,
-  //   logout: PropTypes.func,
-  //   deleteUser: PropTypes.func,
-  //   refreshLoggedUser: PropTypes.func
     questions: PropTypes.array,
     questionsError: PropTypes.object,
 
@@ -45,8 +27,6 @@ class QuestionList extends Component {
       newQuestion: '',
       userName: '',
     }
-
-    //this.state = {error: '', users: []}
   }
 
   refreshFilteredQuestions(displayQuestions, questions) {
@@ -232,20 +212,12 @@ const mapStateToProps = (state, ownProps) => {
     questions: state.questions.questions,
     questionsError: state.questions.questionsError,
     createdQuestion: state.questions.createdQuestion,
-    // users: state.users.users,
-    // usersError: state.users.usersError,
-    // loggedUser: state.auth.loggedUser,
-
   }
 }
 
 export default connect(
   mapStateToProps,
-
   // {
-  //   loadUsers,
-  //   login,
-  //   logout,
   //   deleteUser,
   //   refreshLoggedUser
   // }

@@ -1,7 +1,5 @@
 import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
-import { auth } from './authReducer'
-import { users } from './usersReducer'
 import { questions } from './questionReducer'
 import { answers } from './answerReducer'
 import { combineForms } from 'react-redux-form'
@@ -14,8 +12,8 @@ const rootReducer = combineReducers({
   }, 'forms'),
   questions,
   answers,
-  users,
-  auth,
+  //users,
+  //auth,
   routing
 })
 
