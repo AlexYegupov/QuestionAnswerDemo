@@ -65,7 +65,7 @@ Init database (tested on postgres 9.3.16)
 * Create `<OS_USER>` database user with all priveleges on database and `secret` password
 
 
-Note: to use different values modify env variables or src/settings.js.
+Note: to use different values set env variables in `src/settings.js`
 
 * Create database objects
 
@@ -131,7 +131,7 @@ nvm use v7
 git clone https://github.com/AlexYegupov/QuestionAnswerDemo
 cd QuestionAnswerDemo
 npm i
-npm run dev
+npm run devc
 
 ```
 
