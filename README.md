@@ -88,10 +88,10 @@ create table users(
 alter table users add unique (name);
 alter table users alter column name set not null;
 
-insert into users(id, name) values ('john');
-insert into users(id, name) values ('paul');
-insert into users(id, name) values ('ringo');
-insert into users(id, name) values ('george');
+insert into users(id, name) values (1, 'john');
+insert into users(id, name) values (2, 'paul');
+insert into users(id, name) values (3, 'ringo');
+insert into users(id, name) values (4, 'george');
 
 create table question(
     id serial primary key,
@@ -103,8 +103,8 @@ alter table question alter column text set not null;
 alter table question alter column userId set not null;
 alter table question add unique (text);
 
-insert into question (1, text, userId) values (id, 'what they do in a bed?', 1);
-<insert into question (2, text, userId) values (id, 'why dont we do it in a road?', 2);
+insert into question (id, text, userId) values (1, 'what they do in a bed?', 1);
+insert into question (id, text, userId) values (2, 'why dont we do it in a road?', 2);
 
 create table answer(
     id serial primary key,
